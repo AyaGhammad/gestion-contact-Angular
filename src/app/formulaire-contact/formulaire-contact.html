@@ -1,0 +1,13 @@
+<div>
+  <h2>Ajouter un Contact</h2>
+  <input [(ngModel)]="nom" placeholder="Nom complet **">
+  <input [(ngModel)]="email" type="email" placeholder="Email **">
+  <input [(ngModel)]="telephone" placeholder="Téléphone">
+
+  <!-- Aperçu en temps réel -->
+  <div *ngIf="nom" class="apercu">
+    <strong>Aperçu :</strong> {{ nom }} - {{ email }}
+  </div>
+
+  <button (click)="sauvegarder()">+ Ajouter le contact</button>
+</div>
