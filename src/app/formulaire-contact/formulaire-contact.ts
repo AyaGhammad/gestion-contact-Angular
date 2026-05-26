@@ -1,11 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../contact.interface';
 
 @Component({
   selector: 'app-formulaire-contact',
-  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './formulaire-contact.html',
   styleUrls: ['./formulaire-contact.css']
@@ -15,7 +14,7 @@ export class FormulaireContact {
   email: string = '';
   telephone: string = '';
 
-  @Output() contactSauvegarde = new EventEmitter<Contact>();
+  contactSauvegarde = output<Contact>();
 
   sauvegarder(): void {
     if (this.nom.trim() && this.email.trim()) {

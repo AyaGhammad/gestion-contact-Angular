@@ -1,15 +1,15 @@
 <div>
-  <h2>Liste des Contacts ({{ contacts.length }})</h2>
+  <h2>Liste des Contacts ({{ contacts().length }})</h2>
 
   <!-- Champ de recherche -->
   <input [(ngModel)]="recherche" placeholder="Rechercher un contact...">
   <p>{{ contactsFiltres.length }} résultat(s)</p>
 
   <!-- Message si liste vide -->
-  <p *ngIf="contacts.length === 0">Aucun contact pour le moment.</p>
+  <p *ngIf="contacts().length === 0">Aucun contact pour le moment.</p>
 
   <!-- Affichage de la liste filtrée -->
-  <ul *ngIf="contacts.length > 0">
+  <ul *ngIf="contacts().length > 0">
     <li *ngFor="let c of contactsFiltres; let i = index">
       <span>{{ i + 1 }}.</span>
       <strong>{{ c.nom }}</strong> - {{ c.email }}

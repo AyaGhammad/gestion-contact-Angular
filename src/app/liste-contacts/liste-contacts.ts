@@ -1,21 +1,20 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, input, output, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { Contact } from '../contact.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-liste-contacts',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './liste-contacts.html',
   styleUrls: ['./liste-contacts.css']
 })
 export class ListeContacts implements OnInit, OnChanges, OnDestroy {
-  @Input() contacts: Contact[] = [];
-  @Output() contactSupprime = new EventEmitter<number>();
+  contacts=input<Contact[]> ([]);
+  contactSupprime = output<number>();
 
   dateChargement: string = '';
-  nombreAjouts: number = 0;
+  nombreAjouts: number = 0;//s'incremente a chaque modification(ajout ou suppression)
   recherche: string = '';
 
   constructor() {
@@ -53,9 +52,9 @@ export class ListeContacts implements OnInit, OnChanges, OnDestroy {
 
   // Filtre de recherche (propriété calculée)
   get contactsFiltres(): Contact[] {
-    if (!this.recherche.trim()) return this.contacts;
+    if (!this.recherche.trim()) return this.contacts();
     const terme = this.recherche.toLowerCase();
-    return this.contacts.filter(c =>
+    return this.contacts().filter(c =>
       c.nom.toLowerCase().includes(terme) ||
       c.email.toLowerCase().includes(terme)
     );

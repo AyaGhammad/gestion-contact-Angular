@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormulaireContact } from './formulaire-contact/formulaire-contact';
 import { ListeContacts } from './liste-contacts/liste-contacts';
 import { Contact } from './contact.interface';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, FormulaireContact, ListeContacts],
+  imports: [FormulaireContact, ListeContacts],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
@@ -20,7 +18,7 @@ export class App implements OnInit {
       { nom: 'Ali Benali', email: 'ali@example.com', telephone: '0600000001' },
       { nom: 'Sara Alami', email: 'sara@example.com', telephone: '0600000002' }
     ];
-    console.log('AppComponent initialisé avec', this.mesContacts.length, 'contacts');
+    console.log('App initialisé avec', this.mesContacts.length, 'contacts');
   }
 
   ajouterContact(contact: Contact): void {
